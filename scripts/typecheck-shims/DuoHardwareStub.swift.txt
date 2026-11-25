@@ -1,0 +1,7 @@
+// Typecheck-only stub for App/DuoHardware.swift (see scripts/typecheck-app.sh). Not part of the app.
+import UIKit
+struct ReservedLayoutRegions: Equatable { var occlusions: [CGRect] = []; var divisions: [CGRect] = [] }
+@MainActor enum DuoHardware {
+    static func reservedRegions(in view: UIView) -> ReservedLayoutRegions { ReservedLayoutRegions() }
+    static func observeHinge(on view: UIView, onChange: @escaping () -> Void) -> AnyObject? { nil }
+}

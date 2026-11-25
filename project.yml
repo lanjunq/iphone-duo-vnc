@@ -1,0 +1,71 @@
+# XcodeGen spec for the Duo VNC iOS app. Generate the project with `xcodegen generate` at the repo root
+# (DuoVNC.xcodeproj is gitignored). Build/sign/install steps: App/README.md.
+name: DuoVNC
+options:
+  bundleIdPrefix: com.lanjunq
+  deploymentTarget:
+    iOS: "27.0"
+  createIntermediateGroups: true
+  developmentLanguage: zh-Hans
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+packages:
+  DuoVNCPackage:
+    path: .
+targets:
+  DuoVNC:
+    type: application
+    platform: iOS
+    configFiles:
+      Debug: App/Base.xcconfig
+      Release: App/Base.xcconfig
+    sources:
+      - path: App
+        excludes:
+          - "README.md"
+          - "*.xcconfig"
+          - "Signing.xcconfig.example"
+          - "Info.plist"
+    dependencies:
+      - package: DuoVNCPackage
+        product: RFBCore
+      - package: DuoVNCPackage
+        product: RFBMockServer
+      - package: DuoVNCPackage
+        product: DuoVNCKit
+      - package: DuoVNCPackage
+        product: DuoVNCSession
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Duo VNC
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        CFBundleDevelopmentRegion: zh-Hans
+        LSRequiresIPhoneOS: true
+        ITSAppUsesNonExemptEncryption: false
+        NSLocalNetworkUsageDescription: Duo VNC 需要访问本地网络，才能连接家里或局域网里 Mac 的屏幕共享。
+        UILaunchScreen: {}
+        UIUserInterfaceStyle: Dark
+        UIApplicationSupportsIndirectInputEvents: true
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_NAME: DuoVNC
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+        GENERATE_INFOPLIST_FILE: NO
+        ENABLE_PREVIEWS: NO
+    scheme: {}

@@ -1,0 +1,7 @@
+// Copy to App/Signing.xcconfig (gitignored) and put your Team ID here.
+// Free Apple ID: the "Personal Team" ID shown in Xcode > Settings > Accounts, or in the error text of
+// the first `xcodebuild -allowProvisioningUpdates` run. Paid account: developer.apple.com > Membership.
+DEVELOPMENT_TEAM = ABCDE12345
+
+// If a free Personal Team says the bundle id is not available, pick your own:
+// PRODUCT_BUNDLE_IDENTIFIER = com.yourname.duovnc

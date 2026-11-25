@@ -1,0 +1,12 @@
+// Typecheck-only shim: the CLT toolchain has no SwiftUIMacros plugin, so SwiftUI's macro-backed
+// @State cannot expand. A module-local property wrapper with the same surface shadows it.
+import SwiftUI
+@propertyWrapper struct ShimState<Value>: DynamicProperty {
+    init(wrappedValue: Value) { fatalError() }
+    init(initialValue: Value) { fatalError() }
+    var wrappedValue: Value { get { fatalError() } nonmutating set { } }
+    var projectedValue: Binding<Value> { fatalError() }
+}
+extension ShimState where Value: ExpressibleByNilLiteral {
+    init() { fatalError() }
+}

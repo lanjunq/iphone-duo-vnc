@@ -1,0 +1,7 @@
+// Build settings for the DuoVNC app target (referenced from project.yml).
+// Bundle id first, so App/Signing.xcconfig can override it (a free Apple ID may need a unique one).
+PRODUCT_BUNDLE_IDENTIFIER = com.lanjunq.duovnc
+
+// Optional, not committed: DEVELOPMENT_TEAM (and optionally PRODUCT_BUNDLE_IDENTIFIER).
+// Copy App/Signing.xcconfig.example to App/Signing.xcconfig and fill in your Team ID.
+#include? "Signing.xcconfig"
